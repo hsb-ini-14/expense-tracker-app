@@ -18,13 +18,26 @@ const months = [
   "December",
 ];
 
-const ExpenseFilter = ({ filters, setfilters }) => {
+const ExpenseFilter = ({ filters, setFilters }) => {
   const { register, handleSubmit, reset } = useForm();
 
+  const handleSearch = (data) => {
+    setFilters(data);
+  };
+
+  const handleReset = () => {
+    const defaultFilters = { category: "All", month: "All", title: "" };
+    reset(defaultFilters);
+    setFilters(defaultFilters);
+  };
+
   return (
-    <form className="w-full bg-pink-200 rounded shadow-xl space-y-4 p-4">
+    <form
+      onSubmit={handleSubmit(handleSearch)}
+      className="w-full bg-pink-200 rounded shadow-xl space-y-4 p-4"
+    >
       <h2 className="text-2xl font-bold">Filter By:</h2>
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="flex flex-col">
           <label className="">Category:</label>
           <select
@@ -50,14 +63,24 @@ const ExpenseFilter = ({ filters, setfilters }) => {
         <div className="flex flex-col">
           <label className="">Title:</label>
           <input
-            {...register("titleFilter")}
+            {...register("title")}
             className="border p-2 rounded"
-            placeholder="Title"
+            placeholder="Optional..."
             type="text"
           />
         </div>
-        <div className="p-1 flex items-end justify-end">
-          <button className="px-2 py-1 rounded font-bold text-white bg-blue-600 hover:bg-blue-700">
+        <div className="p-1 flex items-end justify-between">
+          <button
+            type="submit"
+            className="px-2 py-1 rounded font-bold text-white bg-orange-500 hover:bg-orange-600"
+          >
+            Search
+          </button>
+          <button
+            onClick={handleReset}
+            type="button"
+            className="px-2 py-1 rounded font-bold text-white bg-blue-600 hover:bg-blue-700"
+          >
             Reset
           </button>
         </div>
