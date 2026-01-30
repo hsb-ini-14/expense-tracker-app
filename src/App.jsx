@@ -3,6 +3,7 @@ import ExpenseForm from "./components/ExpenseForm";
 import ExpenseList from "./components/ExpenseList";
 import ExpenseTotal from "./components/ExpenseTotal";
 import ExpenseFilter from "./components/ExpenseFilter";
+import ExpenseCharts from "./components/charts/ExpenseCharts";
 
 const LOCAL_STORAGE_KEY = "expenses";
 
@@ -52,13 +53,14 @@ const App = () => {
           setExpenses={setExpenses}
           editingExpense={editingExpense}
           setEditingExpense={setEditingExpense}
-        />
-        <ExpenseTotal
+          />
+          <ExpenseTotal
           allExpenses={expenses}
           filteredExpenses={filteredExpenses}
-        />
-        <ExpenseFilter filters={filters} setFilters={setFilters} />
-        <ExpenseList
+          />
+          <ExpenseFilter filters={filters} setFilters={setFilters} />
+          <ExpenseCharts expenses={expenses} />
+          <ExpenseList
           filteredExpenses={filteredExpenses}
           expenses={expenses}
           setExpenses={setExpenses}
