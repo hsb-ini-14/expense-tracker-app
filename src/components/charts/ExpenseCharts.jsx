@@ -30,7 +30,9 @@ const ExpenseCharts = ({ expenses }) => {
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
       {/* Pie Chart */}
       <div className="bg-white p-4 rounded-xl shadow">
-        <h2 className="text-lg font-semibold mb-4">Expenses by Category</h2>
+        <h2 className="text-lg font-semibold mb-4">
+          Expenses by Category (PieChart):
+        </h2>
 
         <ResponsiveContainer width="100%" height={300}>
           <PieChart>
@@ -56,7 +58,9 @@ const ExpenseCharts = ({ expenses }) => {
 
       {/* Bar Chart */}
       <div className="bg-white p-4 rounded-xl shadow">
-        <h2 className="text-lg font-semibold mb-4">Monthly Expenses</h2>
+        <h2 className="text-lg font-semibold mb-4">
+          Monthly Expenses (Bar Chart):
+        </h2>
 
         <ResponsiveContainer width="100%" height={300}>
           <BarChart data={monthlyData}>

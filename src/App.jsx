@@ -4,13 +4,20 @@ import ExpenseList from "./components/ExpenseList";
 import ExpenseTotal from "./components/ExpenseTotal";
 import ExpenseFilter from "./components/ExpenseFilter";
 import ExpenseCharts from "./components/charts/ExpenseCharts";
+import expensesData from "./data/seedExpenses";
 
 const LOCAL_STORAGE_KEY = "expenses";
+
+const DEMO_FLAG_KEY = "hasDemoData";
 
 const App = () => {
   const [expenses, setExpenses] = useState(() => {
     const storedExpenses = localStorage.getItem(LOCAL_STORAGE_KEY);
     return storedExpenses ? JSON.parse(storedExpenses) : [];
+  });
+
+  const [hasDemoData, setHasDemoData] = useState(() => {
+    return localStorage.getItem(DEMO_FLAG_KEY) === "true";
   });
 
   const [filters, setFilters] = useState({
@@ -41,6 +48,21 @@ const App = () => {
     return categoryMatch && monthMatch && titleMatch;
   });
 
+  const toggleDemoData = () => {
+    if (hasDemoData) {
+      // Remove demo data
+      setExpenses([]);
+      localStorage.removeItem(LOCAL_STORAGE_KEY);
+      localStorage.removeItem(DEMO_FLAG_KEY);
+      setHasDemoData(false);
+    } else {
+      // Add demo data
+      setExpenses(expensesData);
+      localStorage.setItem(DEMO_FLAG_KEY, "true");
+      setHasDemoData(true);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-100 px-3 sm:px-6 py-6">
       <div className="max-w-6xl mx-auto flex flex-col gap-5">
@@ -53,14 +75,16 @@ const App = () => {
           setExpenses={setExpenses}
           editingExpense={editingExpense}
           setEditingExpense={setEditingExpense}
-          />
-          <ExpenseTotal
+        />
+        <ExpenseTotal
           allExpenses={expenses}
           filteredExpenses={filteredExpenses}
-          />
-          <ExpenseFilter filters={filters} setFilters={setFilters} />
-          <ExpenseCharts expenses={expenses} />
-          <ExpenseList
+          hasDemoData={hasDemoData}
+          toggleDemoData={toggleDemoData}
+        />
+        <ExpenseFilter filters={filters} setFilters={setFilters} />
+        <ExpenseCharts expenses={expenses} />
+        <ExpenseList
           filteredExpenses={filteredExpenses}
           expenses={expenses}
           setExpenses={setExpenses}

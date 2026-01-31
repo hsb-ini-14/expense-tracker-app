@@ -1,4 +1,9 @@
-const ExpenseTotal = ({ allExpenses, filteredExpenses }) => {
+const ExpenseTotal = ({
+  allExpenses,
+  filteredExpenses,
+  hasDemoData,
+  toggleDemoData,
+}) => {
   const filteredTotal = filteredExpenses.reduce(
     (sum, expense) => sum + expense.amount,
     0,
@@ -8,11 +13,21 @@ const ExpenseTotal = ({ allExpenses, filteredExpenses }) => {
 
   return (
     <div className="w-full bg-green-200 rounded shadow-xl p-4 flex flex-col sm:flex-row gap-4 justify-between text-center">
-      <div className="flex flex-col items-center justify-center">
+      <div className="flex flex-col items-center justify-center w-full sm:w-1/3">
         <h2 className="text-base font-bold">Filtered Total</h2>
         <h3 className="text-xl text-red-600 font-bold">₹{filteredTotal}</h3>
       </div>
-      <div className="flex flex-col items-center justify-center">
+
+      <div className="flex items-center justify-center w-full sm:w-1/3">
+        <button
+          onClick={toggleDemoData}
+          className="w-48 py-2 px-2 bg-gradient-to-r from-purple-700 via-indigo-600 to-purple-700 rounded-xl text-bold text-white hover:from-purple-800 hover:via-indigo-700 hover:to-purple-800 transition-transform duration-200 hover:scale-110 active:scale-95"
+        >
+          {hasDemoData ? "Remove Demo Data" : "Add Demo Data"}
+        </button>
+      </div>
+
+      <div className="flex flex-col items-center justify-center w-full sm:w-1/3">
         <h2 className="text-base font-bold">Total</h2>
         <h3 className="text-xl text-red-600 font-bold">₹{total}</h3>
       </div>
