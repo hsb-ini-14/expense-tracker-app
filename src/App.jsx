@@ -64,7 +64,7 @@ const App = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 px-3 sm:px-6 py-6">
+    <div className="min-h-screen overflow-y-auto bg-gray-100 px-3 sm:px-6 py-6">
       <div className="max-w-6xl mx-auto flex flex-col gap-5">
         <h1 className="text-center text-2xl sm:text-3xl md:text-4xl font-bold flex justify-center gap-2">
           <i className="bx bxs-wallet text-green-900"></i>

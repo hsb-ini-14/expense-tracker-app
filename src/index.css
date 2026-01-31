@@ -2,3 +2,27 @@
 * {
   font-family: "Nunito", sans-serif;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Chrome, Safari, Edge */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Firefox */
+html {
+  scrollbar-width: none;
+}
+
+/* IE / Old Edge */
+body {
+  -ms-overflow-style: none;
+}
+
+/* ================================
+   Tailwind Base (Keep This)
+================================ */
+@tailwind utilities;
